@@ -1,5 +1,6 @@
 package com.example.lenovoz40.aww;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         ibSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent goToSettings = new Intent(MainActivity.this, Settings.class);
 
+                startActivity(goToSettings);
             }
         });
     }
