@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EA554F</color>
+    <color name="colorPrimaryDark">#C7443F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="lightblue">#A1D0C0</color>
+    <color name="maroon">#863A2C</color>
+    <color name="beige">#ECC5A8</color>
+    <color name="lightbeige">#E8D7C3</color>
+    <color name="red">#EA554F</color>
+    <color name="white">#FFFFFF</color>
+</resources>
