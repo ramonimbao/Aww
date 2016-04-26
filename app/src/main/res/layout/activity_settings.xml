@@ -31,7 +31,7 @@
 
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_conten;;;;;;;;;;;;;;;;;;;;;;;t"
+            android:layout_height="wrap_content"
             android:id="@+id/spnColors"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -54,11 +54,11 @@
             android:layout_marginTop="-15sp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="About"
-            android:id="@+id/tvAbout"
+            android:id="@+id/btnAbout"
             android:background="#00000000"
             style="?android:attr/borderlessButtonStyle"
             android:layout_below="@+id/textView"

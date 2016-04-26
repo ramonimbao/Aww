@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         ibLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent goToImageList = new Intent(MainActivity.this, ImageList.class);
+                startActivity(goToImageList);
             }
         });
 

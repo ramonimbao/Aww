@@ -9,4 +9,59 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lenovoz40.aww.About">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="About"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Looking at cute things does more than make people smile and de-stress. A study by Hiroshi Nittono shows that participants performed tasks requiring focused attention more carefully after viewing cute images. In this study, cute or “kawaii” things and caring are somewhat related.
+
+This application uses the Reddit API to let the user search and view adorable images from the /r/aww subreddit. Posts in this subreddit are not just images, so our app checks if the post is an image (not including GIFs) through JSON. If the post is an image, it displays the image. If it isn’t, the app ignores the post. Only the title and the image can be viewed by the user. The app can also let the user save the images he/she likes."
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="This is a CIE199 Project by\nDawn Christine Corpuz\nRamon Miguel Imbao"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Made with"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/android_studio_icon"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_marginTop="-25sp"/>
 </RelativeLayout>

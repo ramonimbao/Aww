@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lenovoz40.aww">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings" />
-        <activity android:name=".About"></activity>
+        <activity android:name=".About" />
+        <activity android:name=".ImageList"></activity>
     </application>
 
 </manifest>
