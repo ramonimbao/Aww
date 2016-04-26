@@ -14,7 +14,7 @@ public class CuteImage {
     public CuteImage(String url, String title) {
         this.url = url;
         this.title = title;
-        this.bitmap = new DownloadImageTask().doInBackground(url);
+        //this.bitmap = new DownloadImageTask().doInBackground(url);
     }
 
     public String getUrl() {
@@ -23,7 +23,7 @@ public class CuteImage {
 
     public void setUrl(String url) {
         this.url = url;
-        this.bitmap = new DownloadImageTask().doInBackground(url);
+        //this.bitmap = new DownloadImageTask().doInBackground(url);
     }
 
     public String getTitle() {

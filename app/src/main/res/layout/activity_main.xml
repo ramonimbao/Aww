@@ -17,8 +17,9 @@
         android:src="@drawable/paw_logo_red"
         android:scaleType="fitCenter"
         android:background="#00000000"
-        android:layout_alignTop="@+id/ibSetting"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/ibSetting"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"

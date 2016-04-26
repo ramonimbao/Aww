@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -54,7 +56,8 @@ public class CustomAdapter extends BaseAdapter {
         holder.tv = (TextView)rowView.findViewById(R.id.tvItem);
         holder.img = (ImageView)rowView.findViewById(R.id.ivItem);
         holder.tv.setText(cuteImages.get(position).getTitle());
-        holder.img.setImageBitmap(cuteImages.get(position).getBitmap());
+        //holder.img.setImageBitmap(cuteImages.get(position).getBitmap());
+        Picasso.with(context).load(cuteImages.get(position).getUrl()).into(holder.img);
         return rowView;
     }
 }

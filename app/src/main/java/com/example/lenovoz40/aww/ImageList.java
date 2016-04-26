@@ -25,7 +25,9 @@ public class ImageList extends AppCompatActivity {
         lvImages = (ListView)findViewById(R.id.lvImages);
 
         alCuteImages = new ArrayList<>();
-        alCuteImages.add(new CuteImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/272px-Google_2015_logo.svg.png", "RPM"));
+        for(int i=0; i <50 ; i++){
+            alCuteImages.add(new CuteImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/272px-Google_2015_logo.svg.png", "RPM"+ i));
+        }
 
 
         adapCuteImages = new CustomAdapter(this, alCuteImages);
