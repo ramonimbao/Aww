@@ -32,9 +32,11 @@ public class Settings extends AppCompatActivity {
         rlSettings = (RelativeLayout)findViewById(R.id.rlSettings);
 
         alColors = new ArrayList<Color>();
-        alColors.add(new Color("Beige", "#ECC5A8"));
-        alColors.add(new Color("Light blue","#A1D0C0"));
         alColors.add(new Color("White","#FFFFFF"));
+        alColors.add(new Color("Beige", "#ECC5A8"));
+        alColors.add(new Color("Cream", "#FAE4B5"));
+        alColors.add(new Color("Light blue","#A1D0C0"));
+        alColors.add(new Color("Bright light blue", "#9DDCCD"));
 
         spnColors = (Spinner)findViewById(R.id.spnColors);
         adapColors = new ArrayAdapter<Color>(this, android.R.layout.simple_spinner_dropdown_item, alColors);
