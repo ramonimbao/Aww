@@ -44,11 +44,22 @@ public class Settings extends AppCompatActivity {
 
         btnAbout = (Button)findViewById(R.id.btnAbout);
 
+        AwwApplication app = (AwwApplication) getApplication();
+        app.loadBGColor();
+        String BGColor = app.getaBackground();
+        rlSettings.setBackgroundColor(android.graphics.Color.parseColor(BGColor));
+
+
         spnColors.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                AwwApplication app = (AwwApplication) getApplication();
+
                 backgroundColor = adapColors.getItem(position).getColor();
                 rlSettings.setBackgroundColor(android.graphics.Color.parseColor(backgroundColor));
+
+                app.setaBackground(backgroundColor);
+                app.saveBGColor();
             }
 
             @Override

@@ -6,22 +6,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
 public class ImageList extends AppCompatActivity {
 
-    ImageButton btnAbout;
+    ImageButton btnSettings;
     ListView lvImages;
     ArrayList<CuteImage> alCuteImages;
     CustomAdapter adapCuteImages;
+    RelativeLayout rlImageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_list);
 
-        btnAbout = (ImageButton)findViewById(R.id.btnAbout);
+        rlImageList = (RelativeLayout)findViewById(R.id.rlImageList);
+
+        AwwApplication app = (AwwApplication) getApplication();
+        app.loadBGColor();
+        String BGColor = app.getaBackground();
+
+        rlImageList.setBackgroundColor(android.graphics.Color.parseColor(BGColor));
+
+        btnSettings = (ImageButton)findViewById(R.id.btnAbout);
         lvImages = (ListView)findViewById(R.id.lvImages);
 
         alCuteImages = new ArrayList<>();
@@ -33,11 +43,11 @@ public class ImageList extends AppCompatActivity {
         adapCuteImages = new CustomAdapter(this, alCuteImages);
         lvImages.setAdapter(adapCuteImages);
 
-        btnAbout.setOnClickListener(new View.OnClickListener() {
+        btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToAbout = new Intent(ImageList.this, About.class);
-                startActivity(goToAbout);
+                Intent goToSettings = new Intent(ImageList.this, Settings.class);
+                startActivity(goToSettings);
             }
         });
     }
