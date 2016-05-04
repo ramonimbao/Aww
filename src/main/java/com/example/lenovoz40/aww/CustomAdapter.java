@@ -60,4 +60,6 @@ public class CustomAdapter extends BaseAdapter {
         Picasso.with(context).load(cuteImages.get(position).getUrl()).into(holder.img);
         return rowView;
     }
+
+
 }
