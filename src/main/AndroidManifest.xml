@@ -23,7 +23,6 @@
         <activity android:name=".Settings" />
         <activity android:name=".About" />
         <activity android:name=".ImageList" />
-        <activity android:name=".BigImageView"></activity>
     </application>
 
 </manifest>

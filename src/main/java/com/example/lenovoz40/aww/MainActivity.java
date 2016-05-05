@@ -45,4 +45,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        rlMain = (RelativeLayout)findViewById(R.id.rlMain);
+
+        AwwApplication app = (AwwApplication) getApplication();
+        app.loadBGColor();
+        String BGColor = app.getaBackground();
+
+        rlMain.setBackgroundColor(android.graphics.Color.parseColor(BGColor));
+        super.onResume();
+    }
 }

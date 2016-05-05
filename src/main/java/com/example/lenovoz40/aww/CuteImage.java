@@ -7,24 +7,18 @@ import android.graphics.drawable.Drawable;
  * Created by Lenovo Z40 on 4/26/2016.
  */
 public class CuteImage {
-    private String url = "";
+    private String previewUrl = "";
+    private String realUrl = "";
     private String title = "";
     private Bitmap bitmap = null;
 
-    public CuteImage(String url, String title) {
-        this.url = url;
+    public CuteImage(String previewUrl, String realUrl, String title) {
+        this.previewUrl = previewUrl;
+        this.realUrl = realUrl;
         this.title = title;
-        //this.bitmap = new DownloadImageTask().doInBackground(url);
     }
 
-    public String getUrl() {
-        return url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-        //this.bitmap = new DownloadImageTask().doInBackground(url);
-    }
 
     public String getTitle() {
         return title;
@@ -40,5 +34,21 @@ public class CuteImage {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getPreviewUrl() {
+        return previewUrl;
+    }
+
+    public void setPreviewUrl(String previewUrl) {
+        this.previewUrl = previewUrl;
+    }
+
+    public String getRealUrl() {
+        return realUrl;
+    }
+
+    public void setRealUrl(String realUrl) {
+        this.realUrl = realUrl;
     }
 }

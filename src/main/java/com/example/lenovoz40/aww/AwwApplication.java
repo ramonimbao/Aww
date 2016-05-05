@@ -10,6 +10,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Lenovo Z40 on 4/28/2016.
@@ -46,7 +47,7 @@ public class AwwApplication extends Application {
         return httpClient;
     }
 
-    public void saveImage(String filename, Bitmap bitmap) {
+    public void saveImage(String filename, Bitmap bitmap)  {
         if (filename == null || filename.equals(""))
             return;
 

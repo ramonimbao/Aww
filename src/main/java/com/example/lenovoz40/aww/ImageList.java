@@ -1,15 +1,24 @@
 package com.example.lenovoz40.aww;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,6 +28,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,19 +77,69 @@ public class ImageList extends AppCompatActivity {
             }
         });
 
-        lvImages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvImages.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent goToBigImageView = new Intent(ImageList.this, BigImageView.class);
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
-                //CuteImage c = (CuteImage)lvImages.getItemAtPosition(i);
-                CuteImage c = (CuteImage)alCuteImages.get(i);
-                goToBigImageView.putExtra("URL", c.getUrl());
-                goToBigImageView.putExtra("TITLE", c.getTitle());
+                String url = alCuteImages.get(i).getRealUrl();
 
-                startActivity(goToBigImageView);
+                String modUrl = "";
+
+                if (!url.contains("http://i.imgur.com/")) {
+                    // So URL's probably formatted like http://imgur.com/XXXXXX
+                    modUrl = "http://i.imgur.com/" + url.substring(17) + ".jpg";
+                }
+
+                final String finalUrl = modUrl == "" ? url : modUrl;
+
+                Log.d("DEBUG", "finalURL:" + finalUrl);
+
+                Target target = new Target() {
+
+                    // code from http://stackoverflow.com/questions/25217495/download-images-from-url-to-sd-card
+                    @Override
+                    public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
+                        /*AwwApplication _app = (AwwApplication)getApplication();
+                        _app.saveImage(url, bitmap);*/
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                File file = new File(
+                                        Environment.getExternalStorageDirectory().getPath()
+                                                + "/Aww/" + URLUtil.guessFileName(finalUrl, null, null));
+                                try {
+                                    file.createNewFile();
+                                    FileOutputStream ostream = new FileOutputStream(file);
+                                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,ostream);
+                                    ostream.close();
+                                }
+                                catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+
+                        Toast.makeText(ImageList.this, "Image saved!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable drawable) {
+                        Toast.makeText(ImageList.this, "Image saving failed.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable drawable) {
+
+                    }
+                };
+
+                Picasso.with(ImageList.this).load(finalUrl).into(target);
+
+
+                return false;
             }
         });
+
         downloadListFromReddit();
     }
 
@@ -141,20 +203,34 @@ public class ImageList extends AppCompatActivity {
             JSONObject nObjData = nObj.getJSONObject("data");
             String title = nObjData.getString("title");
 
+            String realUrl = nObjData.getString("url");
+
             JSONObject nObjPreview = nObjData.getJSONObject("preview");
             JSONArray nObjPreviewImages = nObjPreview.getJSONArray("images");
             JSONObject nObjectPreviewIMG0 = nObjPreviewImages.getJSONObject(0); // let's just always grab the first image
             JSONObject nObjectPreviewIMG0Source = nObjectPreviewIMG0.getJSONObject("source");
 
-            String url = nObjectPreviewIMG0Source.getString("url");
+            String previewUrl = nObjectPreviewIMG0Source.getString("url");
 
             // check if the URL is a direct link to imgur
             // i.e. URL is something like http://i.imgur.com/XXXXXXX.YYY
-            CuteImage cuteImage = new CuteImage(url, title);
+            CuteImage cuteImage = new CuteImage(previewUrl, realUrl, title);
             cuteImages.add(cuteImage);
-            Log.i("CUTE IMAGE", "Url: " + url);
+            Log.i("CUTE IMAGE", "Url: " + realUrl);
             Log.i("CUTE IMAGE", "Title: " + title);
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        rlImageList = (RelativeLayout)findViewById(R.id.rlImageList);
+
+        AwwApplication app = (AwwApplication) getApplication();
+        app.loadBGColor();
+        String BGColor = app.getaBackground();
+
+        rlImageList.setBackgroundColor(android.graphics.Color.parseColor(BGColor));
+        super.onResume();
     }
 }
