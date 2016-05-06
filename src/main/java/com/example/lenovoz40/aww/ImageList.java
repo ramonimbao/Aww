@@ -80,7 +80,7 @@ public class ImageList extends AppCompatActivity {
         lvImages.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-
+                Toast.makeText(ImageList.this, "Saving...",Toast.LENGTH_SHORT).show();
                 String url = alCuteImages.get(i).getRealUrl();
 
                 String modUrl = "";
